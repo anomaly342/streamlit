@@ -52,28 +52,6 @@ def get_hiragana_char(predicted_class):
     return hiragana_df.iloc[predicted_class]["char"]
 
 
-# Function to plot prediction probabilities with Japanese characters
-def plot_probabilities(predictions, hiragana_df):
-    fig, ax = plt.subplots(figsize=(10, 5))
-
-    # Get the top 5 predictions
-    top_5_indices = np.argsort(predictions)[-5:][::-1]
-    top_5_probs = predictions[top_5_indices]
-    top_5_labels = [hiragana_df.iloc[i]["char"] for i in top_5_indices]
-
-    ax.bar(top_5_labels, top_5_probs, color="skyblue")
-
-    # Set Japanese font
-    ax.set_xticklabels(top_5_labels, fontproperties=jp_font, fontsize=14)
-
-    ax.set_xlabel("Hiragana Characters", fontproperties=jp_font, fontsize=14)
-    ax.set_ylabel("Prediction Probability", fontsize=12)
-    ax.set_title("Top 5 Prediction Probabilities", fontsize=14)
-    ax.set_ylim(0, 1)
-
-    return fig
-
-
 # Streamlit App for Hiragana Recognition
 st.title("Hiragana Character Recognition")
 
@@ -107,5 +85,3 @@ if uploaded_image is not None:
             st.subheader(f"Predicted Hiragana character: {hiragana_char}")
 
             # Plot and show probabilities
-            fig = plot_probabilities(predictions, hiragana_df)
-            st.pyplot(fig)
