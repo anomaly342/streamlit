@@ -4,7 +4,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import os
 
+print("Current Working Directory:", os.getcwd())
 # Title and description
 st.title("Model Comparison and Dataset Training Overview")
 st.markdown(
